@@ -1,0 +1,24 @@
+.SearchContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 25px auto;
+}
+
+.Input {
+    width: 300px;
+    height: 50px;
+    
+    overflow-x: auto;
+    overflow-wrap: break-word;
+}
+
+.ArticleContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 90%;
+    height: auto;
+    max-width: 1200px;
+    margin: 20px auto;
+}
