@@ -3,7 +3,21 @@
     width: 300px;
     height: 400px;
     border-bottom: .5px solid black;
+    transition: transform .2s;
 }
+
+.Card:hover {
+    transform: scale(1.05);
+}
+
+.Link {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* .Link:hover {
+    transform: scale(1.2); 
+} */
 
 .ImageContainer {
     width: 100%;
