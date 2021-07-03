@@ -6,7 +6,8 @@
 }
 
 .Input {
-    width: 300px;
+    width: 90%;
+    max-width: 400px;
     height: 50px;
     
     overflow-x: auto;
@@ -21,4 +22,8 @@
     height: auto;
     max-width: 1200px;
     margin: 20px auto;
+}
+
+.NotFoundTitle {
+    text-align: center;
 }
