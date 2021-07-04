@@ -1,0 +1,9 @@
+.Container {
+    width: 100%;
+}
+
+.ErrorStyle {
+    color: #ff3124;
+    text-align: left;
+    margin-bottom: 0;
+}
