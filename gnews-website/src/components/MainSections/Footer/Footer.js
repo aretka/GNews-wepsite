@@ -1,9 +1,11 @@
 import React from 'react'
 
-const Footer = props => {
+import './Footer.scss'
+
+const Footer = () => {
     return (
-        <div>
-            
+        <div className='Footer'>
+            <p className='Content'>This website was created by Aretas Žarnauskas</p>
         </div>
     )
 }

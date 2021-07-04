@@ -1,8 +1,13 @@
-import './App.css';
-import Layout from '../../hoc/Layout/Layout'
+import ContentSection from '../../components/MainSections/ContentSection/ContentSection';
+import Footer from '../../components/MainSections/Footer/Footer'
 
 function App() {
-  return <Layout />
+  return (
+    <>
+      <ContentSection />
+      <Footer />
+    </>
+  ) 
 }
 
 export default App;

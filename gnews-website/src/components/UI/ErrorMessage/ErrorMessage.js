@@ -1,12 +1,12 @@
 import React from 'react'
 
-import classes from './ErrorMessage.module.css'
+import './ErrorMessage.scss'
 
 const ErrorMessage = (props) => {
     return (
-        <div className={classes.Container}>
-            <p className={classes.ErrorStyle}>{props.message}</p>            
-        </div>
+        <>
+            <p className='ErrorStyle'>{props.message}</p>            
+        </>
     )
 }
 

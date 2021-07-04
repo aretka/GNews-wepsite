@@ -1,26 +1,23 @@
 import React from 'react'
+import { Card, Col } from 'react-bootstrap'
 
-import classes from './Card.module.css'
+import './Card.scss'
 
-const Card = (props) => {
+const Article = (props) => {
     return(
-        <div className={classes.Card}> 
-            <a className={classes.Link} rel="noopener noreferrer" target="_blank" href={props.url}>
-                <div className={classes.ImageContainer}>
-                    <img  className={classes.Image} src={props.image}/>
-                </div>
-                <div className={classes.TitleContainer}>
-                    <h3>{props.title}</h3>
-                </div>
-                <div className={classes.TextContainer}>
-                    <p className={classes.Text}>{props.description}</p>
-                </div>
-                <div className={classes.TextContainer}>
-                    <p className={classes.Published}>{props.publishedAt}</p>
-                </div>
+        <Col md={4} className='Card'>
+            <a className='LinkToOriginalSite' rel="noopener noreferrer" target="_blank" href={props.url}>
+                <Card>               
+                    <Card.Body>
+                        <Card.Img src={props.image}/>
+                        <Card.Title>{props.title}</Card.Title>
+                        <Card.Text className='Text'>{props.description}</Card.Text>
+                        <p>{props.publishedAt}</p>
+                    </Card.Body>
+                </Card>
             </a>
-        </div>
+        </Col>
     )
 }
 
-export default Card;
+export default Article;

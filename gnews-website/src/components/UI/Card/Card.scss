@@ -1,23 +1,22 @@
 .Card {
-    margin: 30px 50px;
-    width: 300px;
-    height: 400px;
-    border-bottom: .5px solid black;
     transition: transform .2s;
+    margin-bottom: 20px;
+    padding-bottom: 0;
 }
 
 .Card:hover {
     transform: scale(1.05);
 }
 
-.Link {
+.LinkToOriginalSite {
     text-decoration: none;
     color: inherit;
 }
 
-/* .Link:hover {
-    transform: scale(1.2); 
-} */
+.LinkToOriginalSite:hover {
+    text-decoration: none;
+    color: inherit;
+}
 
 .ImageContainer {
     width: 100%;
@@ -48,7 +47,7 @@
 .Text {
     overflow: hidden;
     display: -webkit-box;
-    -webkit-line-clamp: 5;
+    -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
 }
 
