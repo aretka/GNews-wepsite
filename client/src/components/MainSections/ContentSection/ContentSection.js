@@ -16,31 +16,31 @@ class ContentSection extends Component {
         showNoArticlesFound: false
     }
 
-    // componentDidMount() { 
-    //     const url = `https://gnews.io/api/v4/search?q=a&token=96ee5b7acb258b56ea47bb823edd4f44&max=9`;
-    //     fetch(url)
-    //     .then(response => response.json())
-    //     .then((jsonData) => {
-    //             this.setState({ articleArray: [] })
-    //             for(let i = 0; i < jsonData.articles.length; i++) {
-    //                 const article = {
-    //                     id: i,
-    //                     image: jsonData.articles[i].image,
-    //                     title: jsonData.articles[i].title,
-    //                     description: jsonData.articles[i].description,
-    //                     publishedAt: jsonData.articles[i].publishedAt,
-    //                     url: jsonData.articles[i].url
-    //                 }
-    //                 this.setState(state => ({
-    //                     articleArray: [...state.articleArray, article]
-    //                 }))
+    componentDidMount() { 
+        const url = `https://gnews.io/api/v4/search?q=a&token=96ee5b7acb258b56ea47bb823edd4f44&max=9`;
+        fetch(url)
+        .then(response => response.json())
+        .then((jsonData) => {
+                this.setState({ articleArray: [] })
+                for(let i = 0; i < jsonData.articles.length; i++) {
+                    const article = {
+                        id: i,
+                        image: jsonData.articles[i].image,
+                        title: jsonData.articles[i].title,
+                        description: jsonData.articles[i].description,
+                        publishedAt: jsonData.articles[i].publishedAt,
+                        url: jsonData.articles[i].url
+                    }
+                    this.setState(state => ({
+                        articleArray: [...state.articleArray, article]
+                    }))
 
-    //         }
-    //     })
-    //     .catch(error => {
-    //         console.log(error)
-    //     })
-    // }
+            }
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
 
     articleTitleChangedHandler = (event) => {
         this.setState({enteredArticleTitle: event.target.value})
