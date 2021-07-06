@@ -43,9 +43,19 @@ Header part contains:
   * Search bar
   * Search button
 
-On search button click 
+When button is clicked it checks validation(described below) and if it passes then fetches up to 9 articles typed in search input area and stores them in local state. If input is not valid the error message occurs above input field.
 
 ### Validation 
+
+There are three things that are being validated:
+1. Number of spaces is limited to 40 </br>
+<img src="/screenShots/validation_spaces.png"  width="260" height="180"/>
+2. Only alphanumeric characters are allowed </br>
+<img src="/screenShots/validation_character.png"  width="260" height="180"/>
+3. Cannot be empty field </br>
+<img src="/screenShots/validation_empty.png"  width="260" height="180"/>
+
+### Articles
 
 
 
