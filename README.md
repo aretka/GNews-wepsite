@@ -47,7 +47,7 @@ When button is clicked it checks validation(described below) and if it passes th
 
 In addition, when article title does not match any results it prints message '*No article found with these keywords*'
 <kbd>
-<img src="screenShots/no_article_found.png" width="360" height="260"/>
+<img src="screenShots/no_article_found.png" width="360" height="220"/>
 <kbd/>
  
 ### Validation 
