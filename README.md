@@ -1,8 +1,8 @@
 # GNews-wepsite
 
 This is simple gnews search engine which prints up to 9 searching artilces from GNews API and lists them below searching bar.
-<img src="/screenShots/desktop_size.png" width="750" height="400" style="margin-top: 20px"/>
-<img src="/screenShots/mobile_size.png" width="250" height="400" style="margin-top: 20px"/>
+<img src="/screenShots/desktop_size.png" width="750" height="400"/>
+<img src="/screenShots/mobile_size.png" width="250" height="400"/>
 
 ## Getting started with GNews-website
 
@@ -28,6 +28,9 @@ This website utilized React for a front end part, bootstrap for responsive desig
 * Footer
 
 ### Header 
+
+<img src="/screenShots/header_wide.png" width="750" height="400"/>
+<img src="/screenShots/header_mobile.png" width="250" height="400"/>
 
 Header part contains:
 * Title
