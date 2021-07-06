@@ -60,12 +60,22 @@ There are three things that are being validated:
 
 ### Articles
 
-Main article part stores 3 articles in a row.
-Article component is comprised of react bootstrap element - card component.
-Each card contains image on the top, article title, description, date of publishing.
-When article is clicked it opens original article in new tab.
-When client server starts it loads articles and   
-
+Main article part stores 3 articles in a row. </br>
+Article component is comprised of react bootstrap element - card component. </br>
+Each card contains image on the top, article title, description, date of publishing. </br>
+When article is clicked it opens original article in new tab. </br>
+When client server starts it loads articles and prints them immediately. </br>
+ 
 **Hover effects**:<br/>
 <img src="screenShots/hoverEffects.gif" width="350">
 
+### Footer
+
+Footer is comprised of simple text that stays at the bottom at the page. <br/>
+<img src="screenShots/footer.png" width="700"/>
+
+## Server side with Node js
+
+Server receives post request from react on button click or article click and logs info in the terminal.<br/>
+* On search button click server logs searching article keywords
+* On article click server logs all data displayed in article. 
