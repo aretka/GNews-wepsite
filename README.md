@@ -1,6 +1,7 @@
 # GNews-wepsite
 
 This is simple gnews search engine which prints up to 9 searching artilces from GNews API and lists them below searching bar.
+<img src="/screenShots/desktop_size" width="100" height="100"/>
 
 ## Getting started with GNews-website
 
