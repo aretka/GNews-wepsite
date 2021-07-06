@@ -20,7 +20,7 @@ You will also see any lint errors in the console.
 
 ## About this website
 
-This website utilized React for a front end part, bootstrap for responsive design, axios for fetching data. \nIt is divided into 3 sections:
+This website utilized React for a front end part, bootstrap for responsive design, axios for fetching data. <br/>It is divided into 3 sections:
 * Header 
 * Articles
 * Footer
