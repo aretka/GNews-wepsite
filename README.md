@@ -46,8 +46,10 @@ Header part contains:
 When button is clicked it checks validation(described below) and if it passes then fetches up to 9 articles typed in search input area and stores them in local state. If input is not valid the error message occurs above input field. </br> 
 
 In addition, when article title does not match any results it prints message '*No article found with these keywords*'
+<kbd>
 <img src="screenShots/no_article_found.png"/>
-
+<kbd/>
+ 
 ### Validation 
 
 There are three things that are being validated:
