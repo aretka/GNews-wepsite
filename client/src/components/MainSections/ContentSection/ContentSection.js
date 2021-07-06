@@ -47,7 +47,6 @@ class ContentSection extends Component {
         if(this.state.enteredArticleTitle === '') {
             this.setState({
                 showErrorMessage: true,
-                showNoArticlesFound: true,
                 errorMessageText: "Empty input"
             })
             return false
@@ -57,7 +56,6 @@ class ContentSection extends Component {
         if(spaceCount > 40) {
             this.setState({
                 showErrorMessage: true,
-                showNoArticlesFound: true,
                 errorMessageText: "Invalid input (max 40 spaces)",
             })
             return false
@@ -67,7 +65,6 @@ class ContentSection extends Component {
         if(!this.state.enteredArticleTitle.match(regEx)) {
             this.setState({
                 showErrorMessage: true,
-                showNoArticlesFound: true,
                 errorMessageText: "Please enter letters and numbers only",
             })
             return false
@@ -120,7 +117,12 @@ class ContentSection extends Component {
                         }
                     }
                 })
-                .catch(error => console.error('There was an error', error))
+                .catch(error => {
+                    this.setState({
+                        showNoArticlesFound: true
+                    })
+                    console.error('There was an error', error)
+                })
         }
     }
 
