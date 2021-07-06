@@ -61,11 +61,12 @@ There are three things that are being validated:
 
 ### Articles
 
-Main article part stores 3 articles in a row. </br>
-Article component is comprised of react bootstrap element - card component. </br>
+> Main article part stores 3 articles in a row. </br>
+> Article component is comprised of react bootstrap element - card component. </br>
 Each card contains image on the top, article title, description, date of publishing. </br>
 When article is clicked it opens original article in new tab. </br>
 When client server starts it loads articles and prints them immediately. </br>
+If article description exceeds 4 lines it truncates description with ellipsis.
  
 **Hover effects**:<br/>
 <img src="screenShots/hoverEffects.gif" width="350">
