@@ -57,5 +57,5 @@ There are three things that are being validated:
 
 ### Articles
 
-
+![Article hover effects](screenShots/hoverEffects.gif)
 
