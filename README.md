@@ -43,7 +43,10 @@ Header part contains:
   * Search bar
   * Search button
 
-When button is clicked it checks validation(described below) and if it passes then fetches up to 9 articles typed in search input area and stores them in local state. If input is not valid the error message occurs above input field.
+When button is clicked it checks validation(described below) and if it passes then fetches up to 9 articles typed in search input area and stores them in local state. If input is not valid the error message occurs above input field. </br> 
+
+In addition, when article title does not match any results it prints message '*No article found with these keywords*'
+<img src="screenShots/no_article_found.png"/>
 
 ### Validation 
 
@@ -57,9 +60,12 @@ There are three things that are being validated:
 
 ### Articles
 
+Main article part stores 3 articles in a row.
 Article component is comprised of react bootstrap element - card component.
+Each card contains image on the top, article title, description, date of publishing.
 When article is clicked it opens original article in new tab.
+When client server starts it loads articles and   
 
-Here are hover effects: 
+Here are hover effects:
 <img src="screenShots/hoverEffects.gif" width="350">
 
