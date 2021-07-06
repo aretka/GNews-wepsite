@@ -33,7 +33,7 @@ This website utilized React for a front end part, bootstrap for responsive desig
 <img src="/screenShots/header_wide.png"/>
 
  Mobile size </br>
-<img src="/screenShots/header_mobile.png"/>
+<img src="/screenShots/header_mobile.png"  width="330" height="180"/>
 
 
 Header part contains:
