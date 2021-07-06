@@ -18,9 +18,9 @@ class ContentSection extends Component {
 
     componentDidMount() { 
         const url = `https://gnews.io/api/v4/search?q=a&token=96ee5b7acb258b56ea47bb823edd4f44&max=9`;
-        fetch(url)
-        .then(response => response.json())
-        .then((jsonData) => {
+        axios.get(url)
+            .then(response => {
+                const jsonData = response.data;
                 this.setState({ articleArray: [] })
                 for(let i = 0; i < jsonData.articles.length; i++) {
                     const article = {
@@ -34,12 +34,9 @@ class ContentSection extends Component {
                     this.setState(state => ({
                         articleArray: [...state.articleArray, article]
                     }))
-
-            }
-        })
-        .catch(error => {
-            console.log(error)
-        })
+                }
+            })
+            .catch(error => console.error('There was an error', error))
     }
 
     articleTitleChangedHandler = (event) => {
@@ -94,37 +91,36 @@ class ContentSection extends Component {
         if(this.checkValidation()) {
             
             const url = `https://gnews.io/api/v4/search?q=${this.state.enteredArticleTitle}&token=96ee5b7acb258b56ea47bb823edd4f44&max=9`;
-            fetch(url)
-            .then(response => response.json())
-            .then((jsonData) => {
-                if(jsonData.articles.length === 0) {
-                    this.setState({
-                        showNoArticlesFound: true
-                    })
-                } else {
-                    this.setState({ 
-                        articleArray: [],
-                        showErrorMessage: false,
-                        showNoArticlesFound: false
-                    })
-                    for(let i = 0; i < jsonData.articles.length; i++) {
-                        const article = {
-                            id: i,
-                            image: jsonData.articles[i].image,
-                            title: jsonData.articles[i].title,
-                            description: jsonData.articles[i].description,
-                            publishedAt: jsonData.articles[i].publishedAt,
-                            url: jsonData.articles[i].url
+
+            axios.get(url)
+                .then(response => {
+                    const jsonData = response.data;
+                    if(jsonData.articles.length === 0) {
+                        this.setState({
+                            showNoArticlesFound: true
+                        })
+                    } else {
+                        this.setState({ 
+                            articleArray: [],
+                            showErrorMessage: false,
+                            showNoArticlesFound: false
+                        })
+                        for(let i = 0; i < jsonData.articles.length; i++) {
+                            const article = {
+                                id: i,
+                                image: jsonData.articles[i].image,
+                                title: jsonData.articles[i].title,
+                                description: jsonData.articles[i].description,
+                                publishedAt: jsonData.articles[i].publishedAt,
+                                url: jsonData.articles[i].url
+                            }
+                            this.setState(state => ({
+                                articleArray: [...state.articleArray, article]
+                            }))
                         }
-                        this.setState(state => ({
-                            articleArray: [...state.articleArray, article]
-                        }))
                     }
-                }
-            })
-            .catch(error => {
-                console.log(error)
-            })
+                })
+                .catch(error => console.error('There was an error', error))
         }
     }
 
