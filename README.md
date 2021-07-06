@@ -57,5 +57,9 @@ There are three things that are being validated:
 
 ### Articles
 
+Article component is comprised of react bootstrap element - card component.
+When article is clicked it opens original article in new tab.
+
+Here are hover effects: 
 <img src="screenShots/hoverEffects.gif" width="350">
 
