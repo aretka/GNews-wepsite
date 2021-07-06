@@ -29,10 +29,10 @@ This website utilized React for a front end part, bootstrap for responsive desig
 
 ### Header 
 
- Desktop size
+ Desktop size </br>
 <img src="/screenShots/header_wide.png" width="800" height="150"/>
 
- Mobile size
+ Mobile size </br>
 <img src="/screenShots/header_mobile.png" width="260" height="150"/>
 
 
