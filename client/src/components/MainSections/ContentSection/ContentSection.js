@@ -153,7 +153,7 @@ class ContentSection extends Component {
                             This is simple GNews search engine which prints up to 9 articles for searching title from GNews API.
                         </p>
                         {invalidInputMessage}
-                        <Form>
+                        <Form onSubmit={this.onSubmitHandler}>
                             <Form.Group>
                                 <Form.Control 
                                     type="text" 
@@ -162,12 +162,12 @@ class ContentSection extends Component {
                                     placeholder="Enter article title" />
                                 <Form.Text className="text-muted">Please enter searching title</Form.Text>
                             </Form.Group>
+                            <Row className="justify-content-sm-center">
+                                <Col xs="3">
+                                    <Button className='ButtonStyle' type="submit">Search</Button>
+                                </Col>
+                            </Row>
                         </Form>
-                        <Row className="justify-content-md-center">
-                            <Col xs="3">
-                                <Button className='ButtonStyle' onClick={this.onSubmitHandler}>Search</Button>
-                            </Col>
-                        </Row>
                     </Container>
                 </Jumbotron>
                 {this.state.showNoArticlesFound ? <NoArticlesModal message='No articles found'/> : null}
