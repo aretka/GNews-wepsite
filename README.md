@@ -1,7 +1,7 @@
 # GNews-wepsite
 
 This is simple gnews search engine which prints up to 9 searching artilces from GNews API and lists them below searching bar.<br/>
-<img src="/screenShots/desktop_size.png" width="650" height="400"/>
+<img src="/screenShots/desktop_size.png" width="750" height="400"/>
 <img src="/screenShots/mobile_size.png" width="250" height="400"/>
 
 ## Getting started with GNews-website
