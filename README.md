@@ -66,6 +66,6 @@ Each card contains image on the top, article title, description, date of publish
 When article is clicked it opens original article in new tab.
 When client server starts it loads articles and   
 
-Here are hover effects:
+**Hover effects**:<br/>
 <img src="screenShots/hoverEffects.gif" width="350">
 
