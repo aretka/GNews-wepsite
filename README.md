@@ -28,14 +28,13 @@ This website utilized React for a front end part, bootstrap for responsive desig
 * Footer
 
 ### Header 
-<p align="center"> 
+
  Desktop size
 <img src="/screenShots/header_wide.png" width="800" height="150"/>
-</p>
-<p align="center"> 
+
  Mobile size
 <img src="/screenShots/header_mobile.png" width="260" height="150"/>
-</p>
+
 
 Header part contains:
 * Title
