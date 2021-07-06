@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Container, Row, Col, Jumbotron, Button, Form } from 'react-bootstrap'
 
@@ -7,21 +7,18 @@ import Article from '../../UI/Card/Card'
 import NoArticlesModal from '../../UI/NoArticlesModal/NoArticlesModal'
 import ErrorMessage from '../../UI/ErrorMessage/ErrorMessage'
 
-class ContentSection extends Component {
-    state = {
-        enteredArticleTitle: '',
-        articleArray: [],
-        showErrorMessage: false,
-        errorMessageText: '',
-        showNoArticlesFound: false
-    }
+const ContentSection = () => {
+    const [enteredArticleTitle, setEnteredArticleTitle] = useState('')
+    const [articleArray, setArticleArray] = useState([])
+    const [showErrorMessage, setShowErrorMessage] = useState(false)
+    const [errorMessageText, setErrorMessageText] = useState('')
+    const [showNoArticlesFound, setShowNoArticleFound] = useState(false)
 
-    componentDidMount() { 
+    useEffect(() => {
         const url = `https://gnews.io/api/v4/search?q=a&token=96ee5b7acb258b56ea47bb823edd4f44&max=9`;
         axios.get(url)
             .then(response => {
                 const jsonData = response.data;
-                this.setState({ articleArray: [] })
                 for(let i = 0; i < jsonData.articles.length; i++) {
                     const article = {
                         id: i,
@@ -31,77 +28,65 @@ class ContentSection extends Component {
                         publishedAt: jsonData.articles[i].publishedAt,
                         url: jsonData.articles[i].url
                     }
-                    this.setState(state => ({
-                        articleArray: [...state.articleArray, article]
-                    }))
+                    setArticleArray(prevArticles => [...prevArticles, article])
                 }
             })
             .catch(error => console.error('There was an error', error))
+    }, []) 
+
+    const articleTitleChangedHandler = (event) => {
+        setEnteredArticleTitle(event.target.value)
     }
 
-    articleTitleChangedHandler = (event) => {
-        this.setState({enteredArticleTitle: event.target.value})
-    }
-
-    checkValidation = () => {
-        if(this.state.enteredArticleTitle === '') {
-            this.setState({
-                showErrorMessage: true,
-                errorMessageText: "Empty input"
-            })
+    const checkValidation = () => {
+        if(enteredArticleTitle.trim().length === 0) {
+            setShowErrorMessage(true)
+            setErrorMessageText('Empty input')
             return false
         }
 
-        const spaceCount = this.state.enteredArticleTitle.split(' ').length - 1
+        const spaceCount = enteredArticleTitle.split(' ').length - 1
         if(spaceCount > 40) {
-            this.setState({
-                showErrorMessage: true,
-                errorMessageText: "Invalid input (max 40 spaces)",
-            })
+            setShowErrorMessage(true)
+            setErrorMessageText('Invalid input (max 40 spaces)')
             return false
         }
 
         let regEx = /^[0-9a-zA-Z\s]+$/
-        if(!this.state.enteredArticleTitle.match(regEx)) {
-            this.setState({
-                showErrorMessage: true,
-                errorMessageText: "Please enter letters and numbers only",
-            })
+        if(!enteredArticleTitle.match(regEx)) {
+            setShowErrorMessage(true)
+            setErrorMessageText('Please enter letters and numbers only')
             return false
         }
         return true
     }
 
-    sendPostOfSearchedKeywords = () => {
+    const sendPostOfSearchedKeywords = () => {
         const articleTitleInfo = {
-            searchedKeywords: `${this.state.enteredArticleTitle}`
+            searchedKeywords: `${enteredArticleTitle}`
         }
         axios.post('http://localhost:9000/articles', JSON.stringify(articleTitleInfo))
             .then(() => console.log('Article title sent'))
             .catch(error => {})
     }
 
-    onSubmitHandler = (event) => {
+    const onSubmitHandler = (event) => {
         event.preventDefault()
-        this.sendPostOfSearchedKeywords()
+        sendPostOfSearchedKeywords()
 
-        if(this.checkValidation()) {
+        if(checkValidation()) {
             
-            const url = `https://gnews.io/api/v4/search?q=${this.state.enteredArticleTitle}&token=96ee5b7acb258b56ea47bb823edd4f44&max=9`;
+            const url = `https://gnews.io/api/v4/search?q=${enteredArticleTitle}&token=96ee5b7acb258b56ea47bb823edd4f44&max=9`;
 
             axios.get(url)
                 .then(response => {
                     const jsonData = response.data;
                     if(jsonData.articles.length === 0) {
-                        this.setState({
-                            showNoArticlesFound: true
-                        })
+                        setShowNoArticleFound(true)
                     } else {
-                        this.setState({ 
-                            articleArray: [],
-                            showErrorMessage: false,
-                            showNoArticlesFound: false
-                        })
+                        setArticleArray([])
+                        setShowErrorMessage(false)
+                        setShowNoArticleFound(false)
                         for(let i = 0; i < jsonData.articles.length; i++) {
                             const article = {
                                 id: i,
@@ -111,72 +96,66 @@ class ContentSection extends Component {
                                 publishedAt: jsonData.articles[i].publishedAt,
                                 url: jsonData.articles[i].url
                             }
-                            this.setState(state => ({
-                                articleArray: [...state.articleArray, article]
-                            }))
+                            setArticleArray(prevArticles => [...prevArticles, article])
                         }
                     }
                 })
                 .catch(error => {
-                    this.setState({
-                        showNoArticlesFound: true
-                    })
+                    setShowNoArticleFound(true)
                     console.error('There was an error', error)
                 })
         }
     }
 
-    render () {
-        let articles = this.state.articleArray ? (
-            <Container>
-                <Row>
-                    {this.state.articleArray.map((article) => (
-                        <Article 
-                            key={article.id}
-                            image={article.image}
-                            title={article.title}
-                            description={article.description}
-                            publishedAt={article.publishedAt}
-                            url={article.url}
-                        />
-                    ))}
-                </Row>
-            </Container>
-        ) : null
+    let articles = articleArray ? (
+        <Container>
+            <Row>
+                {articleArray.map((article) => (
+                    <Article 
+                        key={article.id}
+                        image={article.image}
+                        title={article.title}
+                        description={article.description}
+                        publishedAt={article.publishedAt}
+                        url={article.url}
+                    />
+                ))}
+            </Row>
+        </Container>
+    ) : null
 
-        let invalidInputMessage = this.state.showErrorMessage ? <ErrorMessage message={this.state.errorMessageText}/> : null
+    let invalidInputMessage = showErrorMessage ? <ErrorMessage message={errorMessageText}/> : null
 
-        return (
-            <>
-                <Jumbotron>
-                    <Container>
-                        <h1>GNews search engine</h1>
-                        <p>
-                            This is simple GNews search engine which prints up to 9 articles for searching title from GNews API.
-                        </p>
-                        {invalidInputMessage}
-                        <Form onSubmit={this.onSubmitHandler}>
-                            <Form.Group>
-                                <Form.Control 
-                                    type="text" 
-                                    className={this.state.showErrorMessage ? `ErrorInput` : ``} 
-                                    onChange={this.articleTitleChangedHandler}
-                                    placeholder="Enter article title" />
-                                <Form.Text className="text-muted">Please enter searching title</Form.Text>
-                            </Form.Group>
-                            <Row className="justify-content-sm-center">
-                                <Col xs="3">
-                                    <Button className='ButtonStyle' type="submit">Search</Button>
-                                </Col>
-                            </Row>
-                        </Form>
-                    </Container>
-                </Jumbotron>
-                {this.state.showNoArticlesFound ? <NoArticlesModal message='No articles found'/> : null}
-                {articles}
-            </>
-        )
-    }
-}
+    return (
+        <>
+            <Jumbotron>
+                <Container>
+                    <h1>GNews search engine</h1>
+                    <p>
+                        This is simple GNews search engine which prints up to 9 articles for searching title from GNews API.
+                    </p>
+                    {invalidInputMessage}
+                    <Form onSubmit={onSubmitHandler}>
+                        <Form.Group>
+                            <Form.Control 
+                                type="text" 
+                                className={showErrorMessage ? `ErrorInput` : ``} 
+                                onChange={articleTitleChangedHandler}
+                                placeholder="Enter article title" />
+                            <Form.Text className="text-muted">Please enter searching title</Form.Text>
+                        </Form.Group>
+                        <Row className="justify-content-sm-center">
+                            <Col xs="3">
+                                <Button className='ButtonStyle' type="submit">Search</Button>
+                            </Col>
+                        </Row>
+                    </Form>
+                </Container>
+            </Jumbotron>
+            {showNoArticlesFound ? <NoArticlesModal message='No articles found'/> : null}
+            {articles}
+        </>
+    )
+};
 
 export default ContentSection;
