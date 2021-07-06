@@ -29,8 +29,8 @@ This website utilized React for a front end part, bootstrap for responsive desig
 
 ### Header 
 
-<img src="/screenShots/header_wide.png" width="700" height="200"/>
-<img src="/screenShots/header_mobile.png" width="200" height="200"/>
+<img src="/screenShots/header_wide.png" width="600" height="150"/>
+<img src="/screenShots/header_mobile.png" width="200" height="150"/>
 
 Header part contains:
 * Title
