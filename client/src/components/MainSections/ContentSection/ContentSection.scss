@@ -2,6 +2,7 @@
 	display: inline-block;
 	font-family: "Montserrat", "Trebuchet MS", Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
+	width: 150px;
 	position: relative;
 	padding: .8em 1.4em;
 	padding-right: 4.7em;
@@ -57,4 +58,10 @@
 
 .ErrorInput {
     border: 1px solid red;
+}
+
+.Center {
+	width: 100%;
+	display: flex;
+	justify-content: center;
 }

@@ -148,11 +148,9 @@ const ContentSection = () => {
                                 placeholder="Enter article title" />
                             <Form.Text className="text-muted">Please enter searching title</Form.Text>
                         </Form.Group>
-                        <Row className="justify-content-sm-center">
-                            <Col xs="3">
-                                <Button className='ButtonStyle' type="submit">Search</Button>
-                            </Col>
-                        </Row>
+                        <div className="Center">
+                            <Button className='ButtonStyle' type="submit">Search</Button>
+                        </div>
                     </Form>
                 </Container>
             </Jumbotron>
