@@ -5,17 +5,13 @@ import { ArticleContext } from '../../../articleContext/ArticleContext'
 import { Container, Jumbotron, Button, Form } from 'react-bootstrap'
 import ErrorMessage from '../../UI/ErrorMessage/ErrorMessage'
 
-const sendPostOfSearchedKeywords = (enteredArticleTitle) => {
-    const articleTitleInfo = {
-        searchedKeywords: `${enteredArticleTitle}`
+const sendPostOfSearchedKeywords = async (enteredArticleTitle) => {
+    try {
+        const resp = axios.post('http://localhost:9000/articles', JSON.stringify({ searchedKeywords: `${enteredArticleTitle}` }))
+        console.log(resp)
+    } catch (error) {
+        console.log(error)
     }
-    console.log("Post sent - ", enteredArticleTitle)
-    axios.post('http://localhost:9000/articles', JSON.stringify(articleTitleInfo))
-        .then((response) => {
-            console.log(response)
-        }, (error) => {
-            console.log(error)
-        })
 }
 
 const checkValidation = ({ 
