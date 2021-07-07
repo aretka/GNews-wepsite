@@ -80,6 +80,6 @@ Footer is comprised of simple text that stays at the bottom at the page. <br/>
 
 Server receives post request from react on button click or article click and logs info in the terminal.<br/>
 * On search button click server logs searching article keywords
-* On article click server logs all data displayed in article. 
+* On article click server logs all data displayed in article. <br/>
 **For instance**: <br/>
 <img src="screenShots/server_logs.png" width="350"/>
