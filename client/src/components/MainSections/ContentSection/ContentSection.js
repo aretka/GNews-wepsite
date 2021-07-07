@@ -42,6 +42,7 @@ const ContentSection = () => {
         if(enteredArticleTitle.trim().length === 0) {
             setShowErrorMessage(true)
             setErrorMessageText('Empty input')
+            setEnteredArticleTitle('')
             return false
         }
 
@@ -49,6 +50,7 @@ const ContentSection = () => {
         if(spaceCount > 40) {
             setShowErrorMessage(true)
             setErrorMessageText('Invalid input (max 40 spaces)')
+            setEnteredArticleTitle('')
             return false
         }
 
@@ -56,6 +58,7 @@ const ContentSection = () => {
         if(!enteredArticleTitle.match(regEx)) {
             setShowErrorMessage(true)
             setErrorMessageText('Please enter letters and numbers only')
+            setEnteredArticleTitle('')
             return false
         }
         return true
@@ -75,8 +78,8 @@ const ContentSection = () => {
         sendPostOfSearchedKeywords()
 
         if(checkValidation()) {
-            
             const url = `https://gnews.io/api/v4/search?q=${enteredArticleTitle}&token=96ee5b7acb258b56ea47bb823edd4f44&max=9`;
+            setEnteredArticleTitle('')
 
             axios.get(url)
                 .then(response => {
@@ -140,6 +143,7 @@ const ContentSection = () => {
                             <Form.Control 
                                 type="text" 
                                 className={showErrorMessage ? `ErrorInput` : ``} 
+                                value={enteredArticleTitle}
                                 onChange={articleTitleChangedHandler}
                                 placeholder="Enter article title" />
                             <Form.Text className="text-muted">Please enter searching title</Form.Text>
