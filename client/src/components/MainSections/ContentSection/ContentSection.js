@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import axios from 'axios'
-import { ArticleContext } from '../../../articleContext/ArticleContext'
 import { Container, Row } from 'react-bootstrap'
 
+import { ArticleContext } from '../../../articleContext/ArticleContext'
 import './ContentSection.scss'
 import Article from '../../UI/Card/Card'
 import NoArticlesModal from '../../UI/NoArticlesModal/NoArticlesModal'
@@ -12,10 +12,11 @@ const ContentSection = () => {
 
     useEffect(() => {
         const url = `https://gnews.io/api/v4/search?q=a&token=96ee5b7acb258b56ea47bb823edd4f44&max=9`;
-        axios.get(url)
+        const fetchArticles = async () => {
+            axios.get(url)
             .then(response => {
                 const jsonData = response.data;
-                for(let i = 0; i < jsonData.articles.length; i++) {
+                for(let i = 0; i < jsonData.articles.length; i+=1) {
                     const article = {
                         id: i,
                         image: jsonData.articles[i].image,
@@ -28,9 +29,11 @@ const ContentSection = () => {
                 }
             })
             .catch(error => console.error('There was an error', error))
-    }, []) 
+        }
+        fetchArticles()
+    }, [setArticleArray]) 
 
-    let articles = articleArray ? (
+    const articles = articleArray ? (
         <Container>
             <Row>
                 {articleArray.map((article) => (

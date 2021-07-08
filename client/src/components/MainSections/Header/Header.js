@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
 import axios from 'axios'
+import { Container, Jumbotron, Button, Form } from 'react-bootstrap'
 
 import { ArticleContext } from '../../../articleContext/ArticleContext'
-import { Container, Jumbotron, Button, Form } from 'react-bootstrap'
 import ErrorMessage from '../../UI/ErrorMessage/ErrorMessage'
 
 const sendPostOfSearchedKeywords = async (enteredArticleTitle) => {
@@ -36,7 +36,7 @@ const checkValidation = ({
         return false
     }
 
-    let regEx = /^[0-9a-zA-Z\s]+$/
+    const regEx = /^[0-9a-zA-Z\s]+$/
     if(!enteredArticleTitle.match(regEx)) {
         setShowErrorMessage(true)
         setErrorMessageText('Please enter letters and numbers only')
@@ -65,8 +65,9 @@ const Header = () => {
         if(checkValidation({ enteredArticleTitle, setShowErrorMessage, setErrorMessageText, setEnteredArticleTitle })) {
             const url = `https://gnews.io/api/v4/search?q=${enteredArticleTitle}&token=96ee5b7acb258b56ea47bb823edd4f44&max=9`;
             setEnteredArticleTitle('')
-    
-            axios.get(url)
+            
+            const fetchArticles = async () => {
+                            axios.get(url)
                 .then(response => {
                     const jsonData = response.data;
                     if(jsonData.articles.length === 0) {
@@ -75,7 +76,7 @@ const Header = () => {
                         setArticleArray([])
                         setShowErrorMessage(false)
                         setShowNoArticleFound(false)
-                        for(let i = 0; i < jsonData.articles.length; i++) {
+                        for(let i = 0; i < jsonData.articles.length; i+=1) {
                             const article = {
                                 id: i,
                                 image: jsonData.articles[i].image,
@@ -92,10 +93,12 @@ const Header = () => {
                     setShowNoArticleFound(true)
                     console.error('There was an error', error)
                 })
+            }
+            fetchArticles()
         }
     }
 
-    let invalidInputMessage = showErrorMessage ? <ErrorMessage message={errorMessageText}/> : null
+    const invalidInputMessage = showErrorMessage ? <ErrorMessage message={errorMessageText}/> : null
 
     const articleTitleChangedHandler = (event) => {
         setEnteredArticleTitle(event.target.value)
