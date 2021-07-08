@@ -4,7 +4,7 @@ import { Card, Col } from 'react-bootstrap'
 
 import './Card.scss'
 
-const Article = (props) => {
+const Article = async (props) => {
     const sendPostOfClickedArticle = () => {
         const article = {
             title: props.title,
@@ -15,7 +15,7 @@ const Article = (props) => {
         }
         axios.post('http://localhost:9000/articles', JSON.stringify(article))
             .then(() => console.log('Article title sent'))
-            .catch(error => {})
+            .catch(error => console.log(error))
     }
     
     return(
